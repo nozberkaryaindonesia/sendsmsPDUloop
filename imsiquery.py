@@ -15,7 +15,7 @@ db = sqlite3.connect(sys.argv[1])
 file = "%s.sh" % sys.argv[2]
 f = open(file,'w')
 cursor = db.cursor()
-for row in db.execute('SELECT imsi FROM observations'):
+for row in db.execute('SELECT DISTINCT imsi FROM observations'):
 	s = './OpenBTSCLI sendsms %s %s "%s"\n' % (row[0].replace(" ",""), sys.argv[2], sys.argv[3])
 	f.write(s)
 f.close()
